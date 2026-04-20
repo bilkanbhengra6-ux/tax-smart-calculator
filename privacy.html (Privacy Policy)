@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8"><title>Privacy Policy - Tax Smart Calculator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 p-6 md:p-12 text-slate-800 leading-relaxed">
+    <div class="max-w-3xl mx-auto bg-white p-8 rounded-2xl shadow-sm">
+        <h1 class="text-3xl font-bold mb-6">Privacy Policy</h1>
+        <p class="mb-4">Tax Smart Calculator mein hum aapki privacy ka samman karte hain. Hum koi bhi personal data (jaise bank details ya salary info) apne server par store nahi karte. Saari calculation aapke browser mein hoti hai.</p>
+        <h2 class="text-xl font-bold mt-6 mb-2">Cookies & Ads</h2>
+        <p>Hum Google AdSense use kar sakte hain jo ads dikhane ke liye cookies ka istemal karta hai. Hum analytics ke liye bhi data use kar sakte hain.</p>
+        <a href="index.html" class="mt-8 inline-block text-indigo-600 font-bold">← Back to Home</a>
+    </div>
+</body>
+</html>
