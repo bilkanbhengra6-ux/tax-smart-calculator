@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta name="description" content="Best SIP Calculator 2026: Apne Mutual Fund investments ki future value calculate karein. Monthly investment, return rate aur duration daalein aur turant result paayein charts ke saath.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIP Calculator | Future Wealth Predictor</title> 
+    <nav class="max-w-5xl mx-auto p-4 flex justify-end gap-4 no-print">
+    <a href="index.html" class="text-indigo-600 font-bold hover:underline">Tax Calculator</a>
+    <a href="sip.html" class="text-indigo-600 font-bold hover:underline">SIP Calculator 📈</a>
+</nav>
+ <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style> body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; } </style>
+</head>
+<body class="p-4 md:p-10">
+
+    <div class="max-w-5xl mx-auto">
+        <a href="index.html" class="text-indigo-600 font-semibold mb-4 inline-block hover:underline">← Back to Tax Calculator</a>
+
+        <div class="bg-white shadow-2xl rounded-3xl overflow-hidden border border-slate-200">
+            <div class="bg-indigo-600 p-8 text-white text-center">
+                <h1 class="text-3xl font-bold">SIP Calculator</h1>
+                <p class="opacity-90">Check karein aapki investment ki future value</p>
+            </div>
+
+            <div class="p-6 md:p-10 grid grid-cols-1 lg:grid-cols-2 gap-10">
+                <div class="space-y-8">
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <label class="text-slate-700 font-bold">Monthly Investment (₹)</label>
+                            <span id="monthlyLabel" class="text-indigo-600 font-bold">₹ 5,000</span>
+                        </div>
+                        <input type="range" id="monthlyInvestment" min="500" max="100000" step="500" value="5000" 
+                               class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-indigo-600" oninput="updateSIP()">
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <label class="text-slate-700 font-bold">Expected Return Rate (p.a %)</label>
+                            <span id="returnLabel" class="text-indigo-600 font-bold">12%</span>
+                        </div>
+                        <input type="range" id="returnRate" min="1" max="30" step="0.5" value="12" 
+                               class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-indigo-600" oninput="updateSIP()">
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <label class="text-slate-700 font-bold">Time Period (Years)</label>
+                            <span id="yearLabel" class="text-indigo-600 font-bold">10 Yr</span>
+                        </div>
+                        <input type="range" id="years" min="1" max="40" step="1" value="10" 
+                               class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-indigo-600" oninput="updateSIP()">
+                    </div>
+
+                    <div class="pt-6 border-t border-slate-100 grid grid-cols-2 gap-4">
+                        <div>
+                            <p class="text-xs text-slate-500 uppercase font-bold">Invested Amount</p>
+                            <p class="text-xl font-bold text-slate-800" id="totalInvested">₹ 6,00,000</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-slate-500 uppercase font-bold">Est. Returns</p>
+                            <p class="text-xl font-bold text-green-600" id="estReturns">₹ 5,61,695</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col items-center justify-center bg-slate-50 rounded-2xl p-6">
+                    <div class="w-64 h-64 mb-6">
+                        <canvas id="sipChart"></canvas>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-slate-500 font-medium">Total Value after <span id="resYears">10</span> years</p>
+                        <h2 class="text-4xl font-black text-indigo-700" id="totalValueDisplay">₹ 11,61,695</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="max-w-5xl mx-auto mt-12 mb-20 px-4 md:px-0">
+    <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
+        
+        <h2 class="text-3xl font-bold text-slate-800 mb-6 border-b-4 border-green-500 inline-block">
+            SIP Calculator: Apne Sapno ko Sach Karein
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mt-6 text-slate-700 leading-relaxed">
+            <div class="space-y-6">
+                <section>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3 italic">SIP Kya Hai aur Ye Kaise Kaam Karta Hai?</h3>
+                    <p>
+                        <strong>Systematic Investment Plan (SIP)</strong> mutual funds mein invest karne ka ek anushasit (disciplined) tarika hai. Isme aap har mahine ek fixed amount (jaise ₹500 ya ₹5000) invest karte hain.
+                    </p>
+                    <p class="mt-2">
+                        Hamara SIP calculator aapko batata hai ki long-term mein <strong>Power of Compounding</strong> kaise kaam karti hai aur kaise chote investments ek bada corpus ban sakte hain.
+                    </p>
+                </section>
+
+                <section class="bg-green-50 p-5 rounded-xl border-l-4 border-green-500">
+                    <h3 class="text-xl font-bold text-green-900 mb-2">Power of Compounding ka Jaadu ✨</h3>
+                    <p class="text-sm">
+                        Agar aap ₹5,000 mahina 20 saal tak invest karte hain (12% return par), toh aapka invested amount ₹12 Lakh hoga, lekin uski total value lagbhag <strong>₹50 Lakh</strong> tak pahunch sakti hai!
+                    </p>
+                </section>
+            </div>
+
+            <div class="space-y-6">
+                <h3 class="text-xl font-bold text-slate-900 mb-4">SIP Investment Tips</h3>
+                <ul class="list-none space-y-3">
+                    <li class="flex items-start">
+                        <span class="text-green-500 mr-2">✔</span>
+                        <span><strong>Early Start:</strong> Jitna jaldi shuru karenge, compounding ka utna zyada fayda milega.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-green-500 mr-2">✔</span>
+                        <span><strong>Consistency:</strong> Market upar ho ya niche, apni SIP kabhi band na karein.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-green-500 mr-2">✔</span>
+                        <span><strong>Step-up SIP:</strong> Har saal apni income ke saath SIP amount thoda badhayein.</span>
+                    </li>
+                </ul>
+
+                <div class="mt-8">
+                    <h3 class="text-lg font-bold text-slate-900 mb-3">Common FAQs</h3>
+                    <div class="space-y-3">
+                        <details class="group border-b pb-2 cursor-pointer">
+                            <summary class="font-semibold">Kya SIP safe hai?</summary>
+                            <p class="text-sm text-slate-600 mt-2">SIP market-linked hoti hai, isliye risk hota hai, lekin long-term (5-10 saal) mein ye FD se kaafi behtar returns de sakti hai.</p>
+                        </details>
+                        <details class="group border-b pb-2 cursor-pointer">
+                            <summary class="font-semibold">Minimum kitna invest kar sakte hain?</summary>
+                            <p class="text-sm text-slate-600 mt-2">Zyadatar mutual funds mein aap ₹500 mahina se SIP shuru kar sakte hain.</p>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script>
+        let myChart;
+
+        function updateSIP() {
+            const P = parseFloat(document.getElementById('monthlyInvestment').value);
+            const r = parseFloat(document.getElementById('returnRate').value) / 12 / 100;
+            const n = parseFloat(document.getElementById('years').value) * 12;
+
+            // Labels update
+            document.getElementById('monthlyLabel').innerText = "₹ " + P.toLocaleString('en-IN');
+            document.getElementById('returnLabel').innerText = document.getElementById('returnRate').value + "%";
+            document.getElementById('yearLabel').innerText = document.getElementById('years').value + " Yr";
+            document.getElementById('resYears').innerText = document.getElementById('years').value;
+
+            // SIP Formula: FV = P × ({[1 + r]^n - 1} / r) × (1 + r)
+            const futureValue = P * (((Math.pow(1 + r, n) - 1) / r) * (1 + r));
+            const investedAmount = P * n;
+            const returns = futureValue - investedAmount;
+
+            // Display update
+            document.getElementById('totalInvested').innerText = "₹ " + Math.round(investedAmount).toLocaleString('en-IN');
+            document.getElementById('estReturns').innerText = "₹ " + Math.round(returns).toLocaleString('en-IN');
+            document.getElementById('totalValueDisplay').innerText = "₹ " + Math.round(futureValue).toLocaleString('en-IN');
+
+            updateChart(investedAmount, returns);
+        }
+
+        function updateChart(invested, returns) {
+            const ctx = document.getElementById('sipChart').getContext('2d');
+            if (myChart) { myChart.destroy(); }
+            
+            myChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Invested', 'Returns'],
+                    datasets: [{
+                        data: [invested, returns],
+                        backgroundColor: ['#4f46e5', '#10b981'],
+                        borderWidth: 0
+                    }]
+                },
+                options: { cutout: '70%', plugins: { legend: { display: false } } }
+            });
+        }
+
+        // Initial call
+        updateSIP();
+    </script>
+</body>
+</html>
+
