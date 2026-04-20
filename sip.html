@@ -167,7 +167,7 @@
             updateChart(investedAmount, returns);
         }
 
-        function updateChart(invested, returns) {
+        { function updateChart(invested, returns) 
             const ctx = document.getElementById('sipChart').getContext('2d');
             if (myChart) { myChart.destroy(); }
             
@@ -188,6 +188,7 @@
         // Initial call
         updateSIP();
             </script>
+    
     <footer class="max-w-5xl mx-auto mt-10 mb-10 text-center border-t pt-6 text-slate-500 text-sm no-print">
         <p class="mb-4">© 2026 Tax Smart Calculator. All rights reserved.</p>
         <div class="flex justify-center gap-6">
