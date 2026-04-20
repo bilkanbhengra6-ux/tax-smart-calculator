@@ -139,7 +139,6 @@
         </div>
     </div>
 </div>
-
     <script>
         let myChart;
 
@@ -167,7 +166,7 @@
             updateChart(investedAmount, returns);
         }
 
-         function updateChart(invested, returns) {
+        function updateChart(invested, returns) {
             const ctx = document.getElementById('sipChart').getContext('2d');
             if (myChart) { myChart.destroy(); }
             
@@ -181,13 +180,18 @@
                         borderWidth: 0
                     }]
                 },
-                options: { cutout: '70%', plugins: { legend: { display: false } } }
-            });//
-                 
+                options: { 
+                    cutout: '70%', 
+                    plugins: { 
+                        legend: { display: false } 
+                    } 
+                }
+            });
+        }
 
-         Initial call
+        // Initial call - Isse calculator load hote hi chalne lagega
         updateSIP();
-            </script>
+    </script>
     
     <footer class="max-w-5xl mx-auto mt-10 mb-10 text-center border-t pt-6 text-slate-500 text-sm no-print">
         <p class="mb-4">© 2026 Tax Smart Calculator. All rights reserved.</p>
@@ -199,5 +203,8 @@
     </footer>
 
 </body>
+</html>
+
+    
 </html>
 
